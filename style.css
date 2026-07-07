@@ -884,8 +884,9 @@ header {
 }
 
 .oamp-monitoring-widget.active-danger {
-    background: rgba(244, 63, 94, 0.02);
-    border-color: rgba(244, 63, 94, 0.15);
+    background: rgba(244, 63, 94, 0.05);
+    border-color: rgba(244, 63, 94, 0.25);
+    border-left: 4px solid var(--color-danger);
     box-shadow: none;
 }
 
@@ -898,8 +899,9 @@ header {
 }
 
 .oamp-monitoring-widget.active-success {
-    background: rgba(16, 185, 129, 0.02);
-    border-color: rgba(16, 185, 129, 0.15);
+    background: rgba(16, 185, 129, 0.05);
+    border-color: rgba(16, 185, 129, 0.25);
+    border-left: 4px solid var(--color-success);
     box-shadow: none;
 }
 
