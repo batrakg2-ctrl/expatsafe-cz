@@ -78,7 +78,7 @@ const tasksDatabase = [
     {
         id: 'vzp-main',
         title: 'Мед. страхование (OSVČ Hlavní)',
-        cost: '3 306 CZK / мес',
+        cost: '3 306 CZK (~132 €) / мес',
         category: 'insurance',
         badge: 'Страхование',
         deadline: 'до 8 числа следующего месяца',
@@ -117,7 +117,7 @@ const tasksDatabase = [
     {
         id: 'cssz-main',
         title: 'Социальное страхование (OSVČ Hlavní)',
-        cost: '4 759 CZK / мес',
+        cost: '4 759 CZK (~190 €) / мес',
         category: 'insurance',
         badge: 'Пенсионный фонд',
         deadline: 'до конца текущего месяца',
@@ -151,7 +151,7 @@ const tasksDatabase = [
     {
         id: 'flat-tax',
         title: 'Единый паушальный налог (Paušální daň)',
-        cost: '8 120 CZK / мес',
+        cost: '8 120 CZK (~325 €) / мес',
         category: 'tax',
         badge: 'Единый платеж',
         deadline: 'до 20 числа текущего месяца',
@@ -184,7 +184,7 @@ const tasksDatabase = [
             label: 'Услуга под ключ',
             title: 'Сдать декларацию без ошибок',
             desc: 'Наш квалифицированный русскоязычный бухгалтер в Чехии заполнит декларацию DPFO и отчеты для VZP/ČSSZ, отправив их онлайн.',
-            price: '1 200 CZK',
+            price: '1 200 CZK (~48 €)',
             btnText: 'Заказать у бухгалтера',
             actionId: 'order-accounting'
         },
@@ -208,7 +208,7 @@ const tasksDatabase = [
             label: 'Услуга под ключ',
             title: 'Бухгалтер: объединение найма и ИП',
             desc: 'Наш бухгалтер запросит данные у вашего работодателя, рассчитает налоги по ИП и подаст совместную декларацию за вас.',
-            price: '1 500 CZK',
+            price: '1 500 CZK (~60 €)',
             btnText: 'Заказать декларацию',
             actionId: 'order-accounting'
         },
@@ -225,7 +225,7 @@ const tasksDatabase = [
     {
         id: 'municipal-waste-brno',
         title: 'Сбор за вывоз мусора (Брно)',
-        cost: '670 CZK / год на человека',
+        cost: '670 CZK (~27 €) / год на человека',
         category: 'municipal',
         badge: 'Муниципальный',
         deadline: 'до 31 мая ежегодно',
@@ -263,7 +263,7 @@ const tasksDatabase = [
     {
         id: 'municipal-waste-other',
         title: 'Сбор за коммунальные отходы',
-        cost: 'около 750 CZK / год',
+        cost: 'около 750 CZK (~30 €) / год',
         category: 'municipal',
         badge: 'Муниципальный',
         deadline: 'до 31 мая ежегодно',
@@ -282,7 +282,7 @@ const tasksDatabase = [
     {
         id: 'dog-fee',
         title: 'Местный сбор за содержание собаки',
-        cost: 'до 1 500 CZK / год',
+        cost: 'до 1 500 CZK (~60 €) / год',
         category: 'municipal',
         badge: 'Муниципальный',
         deadline: 'в течение 15 дней',
@@ -338,7 +338,7 @@ const tasksDatabase = [
     {
         id: 'tv-radio-license',
         title: 'Теле- и радио-лицензия',
-        cost: '205 CZK / мес',
+        cost: '205 CZK (~8 €) / мес',
         category: 'municipal',
         badge: 'Муниципальный',
         deadline: 'ежемесячно',
@@ -358,7 +358,7 @@ const tasksDatabase = [
     {
         id: 'prep-insurance',
         title: 'Комплексная мед. страховка (PVZP)',
-        cost: 'от 17 500 CZK / год',
+        cost: 'от 17 500 CZK (~700 €) / год',
         category: 'insurance',
         badge: 'Виза / ВНЖ',
         deadline: 'до подачи документов',
@@ -369,7 +369,7 @@ const tasksDatabase = [
             label: 'Скидка экспатам',
             title: 'Медицинская страховка PVZP онлайн',
             desc: 'Оформите оригинальный полис комплексного медицинского страхования PVZP со скидкой 10% напрямую у аккредитованного брокера.',
-            price: 'от 17 500 CZK',
+            price: 'от 17 500 CZK (~700 €)',
             btnText: 'Оформить со скидкой 10%',
             actionId: 'order-insurance'
         },
@@ -404,7 +404,7 @@ const tasksDatabase = [
     {
         id: 'prep-funds',
         title: 'Выписка из банка о наличии средств',
-        cost: 'от 90 000 CZK',
+        cost: 'от 90 000 CZK (~3 600 €)',
         category: 'tax',
         badge: 'Документы',
         deadline: 'выписка не старше 180 дней',
@@ -424,7 +424,7 @@ const tasksDatabase = [
     {
         id: 'prep-osvc-reg',
         title: 'Регистрация ИП в Живностенском уряде',
-        cost: '1 000 CZK (Госпошлина)',
+        cost: '1 000 CZK (~40 €) (Госпошлина)',
         category: 'tax',
         badge: 'Регистрация',
         deadline: 'до подачи на визу OSVČ',
@@ -435,7 +435,7 @@ const tasksDatabase = [
             label: 'Помощь в открытии',
             title: 'Регистрация ИП (OSVČ) под ключ',
             desc: 'Зарегистрируем вам лицензию Живности, получим выписку из реестра, предоставим юридический адрес и зарегистрируем в налоговой за 3 рабочих дня.',
-            price: '2 500 CZK',
+            price: '2 500 CZK (~100 €)',
             btnText: 'Заказать открытие ИП под ключ',
             actionId: 'order-osvc-setup'
         },
@@ -572,7 +572,7 @@ function initApp() {
                 label: 'Premium Бот',
                 title: 'Telegram-проверка писем без лимитов',
                 desc: 'Наш бот будет автоматически проверять вашу Datová Schránka или номер дела FRS и присылать уведомления прямо в Telegram.',
-                price: '79 CZK / мес',
+                price: '79 CZK (~3 €) / мес',
                 btnText: 'Подключить Telegram-бота',
                 actionId: 'order-telegram-bot'
             };
