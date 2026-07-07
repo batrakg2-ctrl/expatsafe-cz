@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpatSafe CZ — Чек-лист иностранца в Чехии</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo">
+                <span class="logo-accent">Expat</span><span>Safe CZ</span>
+            </div>
+            <div class="badge-demo">PROTOTYPE: ONBOARDING & MONETIZATION</div>
+        </header>
+
+        <main class="app-main-flow">
+            <!-- TOP-LEVEL STAGE SWITCHER -->
+            <div class="main-stage-switcher">
+                <button type="button" class="stage-tab-btn active" data-value="preparing">
+                    <div class="stage-tab-text">
+                        <span class="stage-tab-title">Готовлюсь к переезду</span>
+                        <span class="stage-tab-subtitle">Я еще за границей</span>
+                    </div>
+                </button>
+                <button type="button" class="stage-tab-btn" data-value="waiting">
+                    <div class="stage-tab-text">
+                        <span class="stage-tab-title">Живу и продлеваюсь в ЧР</span>
+                        <span class="stage-tab-subtitle">Я уже в Чехии</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- TOP CONFIGURATOR PANEL (MAGIC ONBOARDING) -->
+            <section class="glass-panel configurator-panel">
+                <h2 class="config-title">Мой Статус в Чехии</h2>
+                <p class="config-desc">Выберите параметры ниже. Чек-лист пошлин и документов перестроится мгновенно.</p>
+                
+                <div class="config-grid">
+                    <!-- Row 1: Purpose of Stay Tabs -->
+                    <div class="config-row">
+                        <label class="config-row-label">Цель пребывания:</label>
+                        <div class="tabs-group" id="group-purpose">
+                            <button type="button" class="tab-btn active" data-value="employee">Работа по найму</button>
+                            <button type="button" class="tab-btn" data-value="osvc">Бизнес / ИП (OSVČ)</button>
+                            <button type="button" class="tab-btn" data-value="student">Студент / Учеба</button>
+                            <button type="button" class="tab-btn" data-value="other">Иное (ВНЖ/ПМЖ)</button>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: City Tabs -->
+                    <div class="config-row">
+                        <label class="config-row-label">Город проживания:</label>
+                        <div class="tabs-group" id="group-city">
+                            <button type="button" class="tab-btn active" data-value="prague">Прага</button>
+                            <button type="button" class="tab-btn" data-value="brno">Брно</button>
+                            <button type="button" class="tab-btn" data-value="ostrava">Острава</button>
+                            <button type="button" class="tab-btn" data-value="other">Другой город</button>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Extra Switches -->
+                    <div class="config-row" id="row-extra-toggles">
+                        <label class="config-row-label">Дополнительно:</label>
+                        <div class="toggles-row">
+                            <label class="switch-pill">
+                                <input type="checkbox" id="check-has-dog">
+                                <span class="pill-checkmark">У меня есть собака</span>
+                            </label>
+                            <label class="switch-pill">
+                                <input type="checkbox" id="check-owns-property">
+                                <span class="pill-checkmark">Владею недвижимостью</span>
+                            </label>
+                            <label class="switch-pill">
+                                <input type="checkbox" id="check-has-car">
+                                <span class="pill-checkmark">Есть авто для бизнеса</span>
+                            </label>
+                            <label class="switch-pill" id="pill-flat-tax" style="display: none;">
+                                <input type="checkbox" id="check-flat-tax">
+                                <span class="pill-checkmark">Паушальный налог (Paušál)</span>
+                            </label>
+                            <label class="switch-pill" id="pill-secondary-osvc" style="display: none;">
+                                <input type="checkbox" id="check-secondary-osvc">
+                                <span class="pill-checkmark">ИП как доп. деятельность</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROGRESS SAFETY CARD -->
+            <section class="glass-panel progress-card">
+                <div class="progress-info">
+                    <div>
+                        <h2 class="progress-title">Ваш уровень юридической безопасности</h2>
+                        <p class="progress-subtitle" id="progress-text">Выполнено 0 из 0 обязательств (0%)</p>
+                    </div>
+                    <div class="progress-percentage-big" id="progress-percentage-big">0%</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="progress-bar-fill"></div>
+                </div>
+            </section>
+
+            <!-- OAMP MONITORING WIDGET -->
+            <section class="oamp-monitoring-widget active-danger" id="oamp-widget" style="display: none;">
+                <div class="widget-header">
+                    <span class="widget-title">🔔 Авто-мониторинг запросов МВД (OAMP)</span>
+                    <div class="widget-status-badge">
+                        <span class="status-dot"></span>
+                        <span class="status-text" id="oamp-status-text">Мониторинг отключен</span>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <p class="widget-desc" id="oamp-widget-desc">Мы не проверяем ваше дело. Вы рискуете пропустить запрос OAMP на донос документов и получить отказ в визе.</p>
+                    <button type="button" class="btn btn-primary btn-widget-cta" id="btn-widget-connect">Подключить авто-проверку МВД</button>
+                </div>
+            </section>
+
+            <!-- CHEKLIST CONTAINER -->
+            <section class="checklist-container">
+                <h3 class="section-title">Список моих обязательств</h3>
+                <div id="checklist-tasks">
+                    <!-- Tasks will be injected dynamically -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- MOCK SERVICE CHECKOUT MODAL (For monetization items) -->
+    <div id="modal-checkout" class="modal">
+        <div class="modal-content" style="max-width: 480px;">
+            <button class="modal-close" id="btn-close-checkout">✕</button>
+            <div class="modal-body" style="text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">💳</div>
+                <h3 id="checkout-title" style="margin-bottom: 0.5rem;">Оформление услуги</h3>
+                <p id="checkout-desc" style="color: var(--color-text-muted); margin-bottom: 1.5rem;">Заполните форму и наш партнер свяжется с вами.</p>
+                
+                <form id="checkout-form" onsubmit="event.preventDefault();" style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
+                    <div>
+                        <label style="font-size: 0.8rem; font-weight: bold; color: var(--color-text-dim);">Имя пользователя</label>
+                        <input type="text" id="check-name" placeholder="Александр" required style="width:100%; background:rgba(0,0,0,0.2); border:1px solid var(--border-glass); border-radius:8px; padding:0.75rem; color:white; margin-top:0.25rem;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8rem; font-weight: bold; color: var(--color-text-dim);">Телефон / Telegram</label>
+                        <input type="text" id="check-contact" placeholder="+420 777 888 999" required style="width:100%; background:rgba(0,0,0,0.2); border:1px solid var(--border-glass); border-radius:8px; padding:0.75rem; color:white; margin-top:0.25rem;">
+                    </div>
+                    <button class="btn btn-primary" id="btn-submit-order" style="width: 100%; margin-top: 1rem;">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
