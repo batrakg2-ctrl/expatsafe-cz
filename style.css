@@ -277,12 +277,12 @@ header {
     color: white;
 }
 
-.tab-btn.active {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.25);
-    color: white;
-    font-weight: 600;
-    box-shadow: none;
+.tab-btn.active, .tab-btn.active:hover {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #141722;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Switch Pills (Step 3 toggles) */
@@ -313,6 +313,7 @@ header {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-glass);
     color: var(--color-text-muted);
+    font-weight: 500;
     transition: var(--transition-smooth);
 }
 
@@ -321,12 +322,13 @@ header {
     color: white;
 }
 
-.switch-pill input:checked + .pill-checkmark {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.25);
-    color: white;
-    font-weight: 600;
-    box-shadow: none;
+.switch-pill input:checked + .pill-checkmark,
+.switch-pill:hover input:checked + .pill-checkmark {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #141722;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Buttons */
