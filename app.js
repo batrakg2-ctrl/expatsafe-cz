@@ -553,32 +553,40 @@ function initApp() {
         updatePillVisibilityAndLabels();
     });
 
-    btnResetFilters.addEventListener('click', resetFilters);
+    if (btnResetFilters) {
+        btnResetFilters.addEventListener('click', resetFilters);
+    }
 
     // Modal checkout bindings
-    btnCloseCheckout.addEventListener('click', () => modalCheckout.classList.remove('active'));
-    checkoutForm.addEventListener('submit', handleCheckoutSubmit);
+    if (btnCloseCheckout) {
+        btnCloseCheckout.addEventListener('click', () => modalCheckout.classList.remove('active'));
+    }
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', handleCheckoutSubmit);
+    }
     window.addEventListener('click', (e) => {
         if (e.target === modalCheckout) {
             modalCheckout.classList.remove('active');
         }
     });
 
-    btnWidgetConnect.addEventListener('click', () => {
-        if (state.filters.oampMonitoringActive) {
-            alert("Вы будете перенаправлены в Telegram-бот для управления подпиской.");
-        } else {
-            const botCta = {
-                label: 'Premium Бот',
-                title: 'Telegram-проверка писем без лимитов',
-                desc: 'Наш бот будет автоматически проверять вашу Datová Schránka или номер дела FRS и присылать уведомления прямо в Telegram.',
-                price: '79 CZK (~3 €) / мес',
-                btnText: 'Подключить Telegram-бота',
-                actionId: 'order-telegram-bot'
-            };
-            openCheckoutModal(botCta);
-        }
-    });
+    if (btnWidgetConnect) {
+        btnWidgetConnect.addEventListener('click', () => {
+            if (state.filters.oampMonitoringActive) {
+                alert("Вы будете перенаправлены в Telegram-бот для управления подпиской.");
+            } else {
+                const botCta = {
+                    label: 'Premium Бот',
+                    title: 'Telegram-проверка писем без лимитов',
+                    desc: 'Наш бот будет автоматически проверять вашу Datová Schránka или номер дела FRS и присылать уведомления прямо в Telegram.',
+                    price: '79 CZK (~3 €) / мес',
+                    btnText: 'Подключить Telegram-бота',
+                    actionId: 'order-telegram-bot'
+                };
+                openCheckoutModal(botCta);
+            }
+        });
+    }
 
     renderChecklist();
 }

@@ -905,6 +905,7 @@ header {
     cursor: pointer;
     font-weight: bold;
     transition: var(--transition-smooth);
+    z-index: 10;
 }
 
 .modal-close:hover {

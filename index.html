@@ -142,7 +142,7 @@
     <!-- MOCK SERVICE CHECKOUT MODAL (For monetization items) -->
     <div id="modal-checkout" class="modal">
         <div class="modal-content" style="max-width: 480px;">
-            <button class="modal-close" id="btn-close-checkout">✕</button>
+            <button type="button" class="modal-close" id="btn-close-checkout" onclick="document.getElementById('modal-checkout').classList.remove('active');">✕</button>
             <div class="modal-body" style="text-align: center;">
                 <div style="font-size: 3rem; margin-bottom: 1rem;">💳</div>
                 <h3 id="checkout-title" style="margin-bottom: 0.5rem;">Оформление услуги</h3>
