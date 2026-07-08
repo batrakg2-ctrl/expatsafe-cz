@@ -57,7 +57,7 @@ const rowExtraToggles = document.getElementById('row-extra-toggles');
 const btnResetFilters = document.getElementById('btn-reset-filters');
 
 const progressText = document.getElementById('progress-text');
-const progressPercentageBig = document.getElementById('progress-percentage-big');
+const progressBadge = document.getElementById('progress-badge');
 const progressBarFill = document.getElementById('progress-bar-fill');
 const checklistTasks = document.getElementById('checklist-tasks');
 
@@ -917,14 +917,26 @@ function toggleTaskCompleted(taskId, isChecked) {
             : !!state.completedTasks[task.id];
         if (checked) completedCount++;
     });
-    updateProgress(completedCount, activeTasks.length);
+    updateProgress(completedCount, activeTasks.length, true);
 }
 
-function updateProgress(completed, total) {
+function updateProgress(completed, total, triggerToast = false) {
+    const oldPercentage = parseInt(progressBarFill.style.width) || 0;
     const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
-    progressText.textContent = `Выполнено ${completed} из ${total} обязательств (${percentage}%)`;
-    progressPercentageBig.textContent = `${percentage}%`;
+    progressText.textContent = `Выполнено ${completed} из ${total} обязательств`;
     progressBarFill.style.width = `${percentage}%`;
+
+    if (progressBadge) {
+        if (percentage === 100) {
+            progressBadge.classList.add('completed');
+        } else {
+            progressBadge.classList.remove('completed');
+        }
+    }
+
+    if (triggerToast && percentage !== oldPercentage) {
+        showToast(completed, total, oldPercentage, percentage);
+    }
 }
 
 // INLINE DATOVA SCHRANKA SIMULATION
@@ -1054,6 +1066,87 @@ function handleCheckoutSubmit() {
     
     // Show mock order confirmation
     alert(`🎉 Заявка принята!\n\nСпасибо, ${name}!\nМы получили ваш заказ на: "${title}".\nНаш специалист свяжется с вами по контакту "${contact}" в течение 1 часа.`);
+}
+
+// FLOATING TOAST NOTIFICATIONS
+function showToast(completed, total, oldPercentage, newPercentage) {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+    
+    const isIncrease = newPercentage >= oldPercentage;
+    let toast = container.querySelector('.toast-notification');
+    let fillElement;
+    
+    if (toast) {
+        // Reuse existing toast!
+        toast.className = `toast-notification ${isIncrease ? 'success' : 'info'}`;
+        
+        const stepsElement = toast.querySelector('.toast-progress-steps');
+        if (stepsElement) {
+            stepsElement.textContent = `Выполнено ${completed} из ${total}`;
+            stepsElement.className = `toast-progress-steps ${isIncrease ? 'success' : 'info'}`;
+        }
+        
+        fillElement = toast.querySelector('#toast-bar-fill');
+        if (fillElement) {
+            fillElement.style.width = `${newPercentage}%`;
+        }
+
+        const toastBadge = toast.querySelector('#toast-progress-badge');
+        if (toastBadge) {
+            if (newPercentage === 100) {
+                toastBadge.classList.add('completed');
+            } else {
+                toastBadge.classList.remove('completed');
+            }
+        }
+        
+        if (toast.removeTimeout) {
+            clearTimeout(toast.removeTimeout);
+        }
+    } else {
+        // Create new toast
+        toast = document.createElement('div');
+        toast.className = `toast-notification ${isIncrease ? 'success' : 'info'}`;
+        
+        toast.innerHTML = `
+            <div class="toast-progress-content">
+                <div class="toast-progress-header">
+                    <span class="toast-progress-title">Уровень безопасности</span>
+                    <span class="toast-progress-steps ${isIncrease ? 'success' : 'info'}">
+                        Выполнено ${completed} из ${total}
+                    </span>
+                </div>
+                <div class="toast-progress-bar-wrapper">
+                    <div class="toast-progress-bar-container">
+                        <div class="toast-progress-bar-fill" id="toast-bar-fill" style="width: ${oldPercentage}%"></div>
+                    </div>
+                    <div class="toast-progress-target-badge ${newPercentage === 100 ? 'completed' : ''}" id="toast-progress-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="toast-shield-icon">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(toast);
+        
+        fillElement = toast.querySelector('#toast-bar-fill');
+        fillElement.getBoundingClientRect(); // Force reflow
+        
+        setTimeout(() => {
+            fillElement.style.width = `${newPercentage}%`;
+        }, 50);
+    }
+    
+    // Set/reset the removal timeout
+    toast.removeTimeout = setTimeout(() => {
+        toast.classList.add('toast-fadeout');
+        setTimeout(() => {
+            toast.remove();
+        }, 250);
+    }, 2800);
 }
 
 // START ON LOAD
