@@ -943,7 +943,18 @@ function updateProgress(completed, total, triggerToast = false) {
     }
 
     if (triggerToast && percentage !== oldPercentage) {
-        showToast(completed, total, oldPercentage, percentage);
+        // Check if the main progress card is visible in the viewport
+        const progressCard = document.querySelector('.progress-card');
+        let isCardVisible = false;
+        if (progressCard) {
+            const rect = progressCard.getBoundingClientRect();
+            // Card is visible if its bottom is below the top of the screen AND its top is above the bottom of the screen
+            isCardVisible = rect.bottom > 0 && rect.top < (window.innerHeight || document.documentElement.clientHeight);
+        }
+        
+        if (!isCardVisible) {
+            showToast(completed, total, oldPercentage, percentage);
+        }
     }
 }
 
